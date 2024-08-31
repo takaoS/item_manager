@@ -16,7 +16,7 @@ public class ItemController {
 	// 商品一覧ページ
 	@GetMapping
 	public String index(Model uiModel) {
-		return "item/idex";
+		return "item/index";
 	}
 	
 	// 商品登録ページ
@@ -32,7 +32,7 @@ public class ItemController {
 	}
 	
 	// 商品編集ページ
-	@GetMapping("hensyu/{id")
+	@GetMapping("hensyu/{id}")
 	public String henshuPage(
 			@PathVariable("id") int id,
 			Model uiModel,
