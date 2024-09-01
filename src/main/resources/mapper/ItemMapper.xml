@@ -6,4 +6,8 @@
         SELECT * FROM items WHERE id = #{id}
     </select>
     
+    <select id="findAll" resultType="com.example.item_manager.entity.Item">
+    	SELECT * FROM items
+    </select>
+    
 </mapper>

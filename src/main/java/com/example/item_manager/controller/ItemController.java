@@ -1,5 +1,7 @@
 package com.example.item_manager.controller;
 
+import java.util.List;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,14 +10,23 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.example.item_manager.entity.Item;
 import com.example.item_manager.form.ItemForm;
+import com.example.item_manager.service.ItemService;
+
+import lombok.RequiredArgsConstructor;
 
 @Controller
 @RequestMapping("/item")
+@RequiredArgsConstructor
 public class ItemController {
+	private final ItemService itemService;
+	
 	// 商品一覧ページ
 	@GetMapping
 	public String index(Model uiModel) {
+		List<Item> items = this.itemService.findAll();
+		System.out.println(items.toString());
 		return "item/index";
 	}
 	
