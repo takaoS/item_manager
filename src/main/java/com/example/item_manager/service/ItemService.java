@@ -1,5 +1,7 @@
 package com.example.item_manager.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.example.item_manager.entity.Item;
@@ -24,5 +26,9 @@ public class ItemService {
 	
 	public Item findById(int id) {
 		return itemDao.findById(id);
+	}
+	
+	public List<Item> findAll() {
+		return itemDao.findAll();
 	}
 }
