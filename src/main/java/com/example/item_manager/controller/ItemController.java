@@ -44,11 +44,21 @@ public class ItemController {
 	}
 	
 	// 商品編集ページ
-	@GetMapping("hensyu/{id}")
+	@GetMapping("henshu/{id}")
 	public String henshuPage(
 			@PathVariable("id") int id,
 			Model uiModel,
 			@ModelAttribute("itemForm") ItemForm itemForm) {
+		
+		Item item = this.itemService.findById(id); // id を用いて該当のデータを取得
+		
+		// 該当のデータから値を取り出し、画面に渡す
+		itemForm.setName(item.getName());
+		itemForm.setPrice(item.getPrice());
+		
+		// id は itemForm に含まれていないので、別経由で画面に渡す
+		uiModel.addAttribute("id", id);
+		
 		return "item/henshuPage";
 	}
 	
