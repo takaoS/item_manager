@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.item_manager.entity.Item;
+import com.example.item_manager.form.ItemForm;
 import com.example.item_manager.mapper_repository.ItemMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -30,5 +31,14 @@ public class ItemService {
 	
 	public List<Item> findAll() {
 		return itemDao.findAll();
+	}
+	
+	public int save(ItemForm itemForm) {
+		Item item = new Item(); // Entityクラスのインスタンスを生成
+		
+		item.setName(itemForm.getName()); // 値をセット
+		item.setPrice(itemForm.getPrice());
+		
+		return itemDao.save(item);
 	}
 }

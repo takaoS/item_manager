@@ -14,4 +14,5 @@ public interface ItemMapper {
     
     List<Item> findAll();
     
+    int save(Item item); // insert, update, delete文では、更新された行数が返り値になるため、int型にする
 }

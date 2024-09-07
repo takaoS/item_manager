@@ -10,4 +10,13 @@
     	SELECT * FROM items
     </select>
     
+    <!-- ① insert, update, delete文では、結果として更新された行数（int型）だけが返されるため、resultType で Javaオブジェクトにマッピングする必要はない。 -->
+    <!-- ② parameterType に Entityクラスの Item を指定しているため、saveメソッドには Itemオブジェクトそのものが渡される。 -->
+    <!-- 　 そのため、そのオブジェクトのプロパティ（name や price）に直接アクセスできるので、item.name のようにオブジェクト名を指定する必要はない。 -->
+    <!-- 　 saveメソッドに複数のパラメータが渡される場合は、オブジェクト名の指定が必要。 -->
+    <insert id="save" parameterType="com.example.item_manager.entity.Item">
+    	INSERT INTO items (name, price)
+    	VALUES (#{name}, #{price})
+    </insert>
+    
 </mapper>
