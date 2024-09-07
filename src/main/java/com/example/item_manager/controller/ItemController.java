@@ -26,7 +26,7 @@ public class ItemController {
 	@GetMapping
 	public String index(Model uiModel) {
 		List<Item> items = this.itemService.findAll();
-		System.out.println(items.toString());
+		uiModel.addAttribute("items", items);
 		return "item/index";
 	}
 	
