@@ -65,6 +65,7 @@ public class ItemController {
 	// 商品編集
 	@PostMapping("henshu/{id}")
 	public String henshu(@PathVariable("id") int id, @ModelAttribute("itemForm") ItemForm itemForm) {
+		itemService.update(id, itemForm);
 		return "redirect:/item";
 	}
 	

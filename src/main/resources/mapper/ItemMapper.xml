@@ -19,4 +19,11 @@
     	VALUES (#{name}, #{price})
     </insert>
     
+    <!-- 複数のパラメータが渡されるので、parameterType に map を指定し、オブジェクト名を指定してプロパティにアクセス -->
+    <update id="update" parameterType="map">
+    	UPDATE items
+    	SET (name, price) = (#{item.name}, #{item.price})
+    	WHERE id = #{id}
+    </update>
+    
 </mapper>

@@ -41,4 +41,13 @@ public class ItemService {
 		
 		return itemDao.save(item);
 	}
+	
+	public int update(int id, ItemForm itemForm) {
+		Item item = new Item();
+		
+		item.setName(itemForm.getName());
+		item.setPrice(itemForm.getPrice());
+		
+		return itemDao.update(id, item);
+	}
 }
