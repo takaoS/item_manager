@@ -72,6 +72,7 @@ public class ItemController {
 	// 商品削除
 	@PostMapping("sakujo/{id}")
 	public String sakujo(@PathVariable("id") int id) {
+		itemService.delete(id);
 		return "redirect:/item";
 	}
 }

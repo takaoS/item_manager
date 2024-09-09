@@ -50,4 +50,8 @@ public class ItemService {
 		
 		return itemDao.update(id, item);
 	}
+	
+	public int delete(int id) {
+		return itemDao.delete(id);
+	}
 }

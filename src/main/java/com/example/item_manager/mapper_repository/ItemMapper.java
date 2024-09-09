@@ -17,4 +17,6 @@ public interface ItemMapper {
     int save(Item item); // insert, update, delete文では、更新された行数が返り値になるため、int型にする
     
     int update(int id, Item item);
+    
+    int delete(int id);
 }
