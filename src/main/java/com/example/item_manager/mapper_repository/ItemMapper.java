@@ -19,4 +19,8 @@ public interface ItemMapper {
     int update(int id, Item item);
     
     int delete(int id);
+    
+    List<Item> findByDeletedAtIsNull();
+    
+    int softDelete(int id, Item item);
 }

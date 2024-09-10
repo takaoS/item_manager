@@ -1,5 +1,6 @@
 package com.example.item_manager.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -53,5 +54,16 @@ public class ItemService {
 	
 	public int delete(int id) {
 		return itemDao.delete(id);
+	}
+	
+	public List<Item> findByDeletedAtIsNull() {
+		return itemDao.findByDeletedAtIsNull();
+	}
+	
+	public int softDelete(int id) {
+		Item item = this.findById(id);
+		item.setDeletedAt(LocalDateTime.now());
+		
+		return itemDao.softDelete(id, item);
 	}
 }

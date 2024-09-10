@@ -31,4 +31,14 @@
     	WHERE id = #{id}
     </delete>
     
+    <select id="findByDeletedAtIsNull" resultType="com.example.item_manager.entity.Item">
+    	SELECT * FROM items WHERE deleted_at IS NULL
+    </select>
+    
+    <update id="softDelete" parameterType="map">
+    	UPDATE items
+    	SET deleted_at = #{item.deletedAt}
+    	WHERE id = #{id}
+    </update>
+    
 </mapper>

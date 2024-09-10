@@ -25,7 +25,7 @@ public class ItemController {
 	// 商品一覧ページ
 	@GetMapping
 	public String index(Model uiModel) {
-		List<Item> items = this.itemService.findAll();
+		List<Item> items = this.itemService.findByDeletedAtIsNull();
 		uiModel.addAttribute("items", items);
 		return "item/index";
 	}
@@ -72,7 +72,7 @@ public class ItemController {
 	// 商品削除
 	@PostMapping("sakujo/{id}")
 	public String sakujo(@PathVariable("id") int id) {
-		itemService.delete(id);
+		itemService.softDelete(id);
 		return "redirect:/item";
 	}
 }
