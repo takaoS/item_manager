@@ -10,4 +10,35 @@
     	SELECT * FROM items
     </select>
     
+    <!-- ① insert, update, delete文では、結果として更新された行数（int型）だけが返されるため、resultType で Javaオブジェクトにマッピングする必要はない。 -->
+    <!-- ② parameterType に Entityクラスの Item を指定しているため、saveメソッドには Itemオブジェクトそのものが渡される。 -->
+    <!-- 　 そのため、そのオブジェクトのプロパティ（name や price）に直接アクセスできるので、item.name のようにオブジェクト名を指定する必要はない。 -->
+    <!-- 　 saveメソッドに複数のパラメータが渡される場合は、オブジェクト名の指定が必要。 -->
+    <insert id="save" parameterType="com.example.item_manager.entity.Item">
+    	INSERT INTO items (name, price)
+    	VALUES (#{name}, #{price})
+    </insert>
+    
+    <!-- 複数のパラメータが渡されるので、parameterType に map を指定し、オブジェクト名を指定してプロパティにアクセス -->
+    <update id="update" parameterType="map">
+    	UPDATE items
+    	SET (name, price) = (#{item.name}, #{item.price})
+    	WHERE id = #{id}
+    </update>
+    
+    <delete id="delete" parameterType="int">
+    	DELETE FROM items
+    	WHERE id = #{id}
+    </delete>
+    
+    <select id="findByDeletedAtIsNull" resultType="com.example.item_manager.entity.Item">
+    	SELECT * FROM items WHERE deleted_at IS NULL
+    </select>
+    
+    <update id="softDelete" parameterType="map">
+    	UPDATE items
+    	SET deleted_at = #{item.deletedAt}
+    	WHERE id = #{id}
+    </update>
+    
 </mapper>
